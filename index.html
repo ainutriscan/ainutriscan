@@ -351,6 +351,21 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 .csr{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:18px}
 .cn{font-size:.77rem;color:var(--muted);font-weight:400;letter-spacing:-.1px}
 
+/* ══ TEAM ══ */
+#team{background:var(--dark)}
+.team-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;text-align:center;transition:border-color .2s}
+.team-card:hover{border-color:rgba(34,197,94,.25)}
+.team-av{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid var(--border)}
+.team-name{font-size:.95rem;font-weight:700;letter-spacing:-.2px;color:var(--white);margin-bottom:3px}
+.team-role{font-size:.78rem;color:var(--g);font-weight:600;letter-spacing:.1px;margin-bottom:6px}
+.team-loc{font-size:.75rem;color:var(--muted);margin-bottom:12px}
+.team-x{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;transition:.2s}
+.team-x:hover{border-color:var(--g);color:var(--white)}
+
+/* ══ ORYNTH BADGE ══ */
+.orynth-wrap{display:flex;justify-content:center;margin-top:28px}
+
 /* ══ FOOTER ══ */
 footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5vw 28px}
 .ftop{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
@@ -380,6 +395,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
   .flt{display:none}
   .fg{grid-template-columns:repeat(2,1fr)}
   .tg{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
   .ftop{grid-template-columns:1fr 1fr;gap:32px}
 }
 @media(max-width:760px){
@@ -443,6 +459,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#team">Team</a></li>
   </ul>
   <div class="na">
     <a href="#" class="btn-o">Log In</a>
@@ -881,6 +898,70 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
   </div>
 </section>
 
+
+<!-- ══ TEAM ══ -->
+<section id="team" class="sec">
+  <div class="sc">
+    <span class="lbl">The Team</span>
+    <h2 class="sh">People behind AI NutriScan</h2>
+    <p class="sp">A small, focused team of builders obsessed with making nutrition intelligence accessible to everyone.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-av" style="background:linear-gradient(135deg,#22c55e22,#22c55e44)">👩‍💻</div>
+      <div class="team-name">Nana Beauchamp-Tremblay</div>
+      <div class="team-role">CEO & Co-Founder</div>
+      <div class="team-loc">📍 Vancouver, Canada</div>
+      <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="team-x">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @nutriscandotfun
+      </a>
+    </div>
+    <div class="team-card">
+      <div class="team-av" style="background:linear-gradient(135deg,#3b82f622,#3b82f644)">👨‍🔬</div>
+      <div class="team-name">Liam Okonkwo-Pearce</div>
+      <div class="team-role">CTO & Co-Founder</div>
+      <div class="team-loc">📍 Toronto, Canada</div>
+      <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="team-x">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @nutriscandotfun
+      </a>
+    </div>
+    <div class="team-card">
+      <div class="team-av" style="background:linear-gradient(135deg,#a855f722,#a855f744)">👩‍🎨</div>
+      <div class="team-name">Zoé Larivière-Bouchard</div>
+      <div class="team-role">Head of Design</div>
+      <div class="team-loc">📍 Montréal, Canada</div>
+      <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="team-x">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @nutriscandotfun
+      </a>
+    </div>
+  </div>
+
+  <!-- GitHub + Orynth Badge -->
+  <div style="max-width:900px;margin:40px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:20px">
+    <a href="https://github.com/ainutriscan/ainutriscan" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-decoration:none;color:var(--white);font-size:.86rem;font-weight:500;transition:border-color .2s"
+       onmouseover="this.style.borderColor='rgba(34,197,94,.4)'" onmouseout="this.style.borderColor='var(--border)'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      View on GitHub
+    </a>
+    <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-decoration:none;color:var(--white);font-size:.86rem;font-weight:500;transition:border-color .2s"
+       onmouseover="this.style.borderColor='rgba(34,197,94,.4)'" onmouseout="this.style.borderColor='var(--border)'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Follow @nutriscandotfun
+    </a>
+    <div class="orynth-wrap">
+      <a href="https://orynth.dev/projects/nutriscan-ai" target="_blank" rel="noopener">
+        <img src="https://orynth.dev/api/badge/nutriscan-ai?theme=dark&style=default" alt="Featured on Orynth" width="200" height="56"
+             style="border-radius:10px;border:1px solid var(--border)" />
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ══ CTA ══ -->
 <section id="cta">
   <div class="ci">
@@ -916,11 +997,20 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
       </a>
       <p class="fdesc">Your intelligent nutrition companion. Scan meals, track macros, and build healthy habits — powered by AI, designed for real life in Indonesia.</p>
       <div class="fsoc">
-        <a href="#" class="fsb">ig</a>
-        <a href="#" class="fsb">X</a>
-        <a href="#" class="fsb">tt</a>
-        <a href="#" class="fsb">in</a>
-        <a href="#" class="fsb">yt</a>
+        <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="fsb" title="X / Twitter">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://github.com/ainutriscan/ainutriscan" target="_blank" rel="noopener" class="fsb" title="GitHub">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="#" class="fsb" title="Instagram">ig</a>
+        <a href="#" class="fsb" title="TikTok">tt</a>
+        <a href="#" class="fsb" title="LinkedIn">in</a>
+      </div>
+      <div style="margin-top:16px">
+        <a href="https://orynth.dev/projects/nutriscan-ai" target="_blank" rel="noopener">
+          <img src="https://orynth.dev/api/badge/nutriscan-ai?theme=dark&style=default" alt="Featured on Orynth" width="180" height="50" style="border-radius:8px;opacity:.85" />
+        </a>
       </div>
     </div>
     <div>
