@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI NutriScan — Smart Nutrition Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --g:#22c55e;--g2:#16a34a;--g3:#86efac;--accent:#a3e635;
+  --dark:#060c08;--dark2:#0d1610;--card:#111b13;--card2:#152018;
+  --border:#1c2d1f;--muted:#587a5b;--white:#eef9ef;--warn:#facc15;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.6}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
+section,nav,footer,.mq-wrap{position:relative;z-index:1}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 5vw;
+  background:rgba(6,12,8,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);transition:padding .3s
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--g2),var(--accent));
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  box-shadow:0 0 24px rgba(34,197,94,.3)
+}
+.logo-name{font-family:'Syne',sans-serif;font-weight:800;font-size:1.28rem;letter-spacing:-.3px;color:var(--white)}
+.logo-name em{font-style:normal;color:var(--g)}
+.nl{display:flex;gap:28px;list-style:none}
+.nl a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:500;transition:color .2s}
+.nl a:hover{color:var(--white)}
+.na{display:flex;gap:10px;align-items:center}
+.bg{border:1px solid var(--border);color:var(--white);background:transparent;padding:8px 18px;border-radius:8px;font-family:inherit;font-size:.83rem;font-weight:500;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block}
+.bg:hover{border-color:var(--g);background:rgba(34,197,94,.06)}
+.bs{background:var(--g);color:#020f04;padding:8px 20px;border-radius:8px;border:none;font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block}
+.bs:hover{background:var(--accent);transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hbg span{display:block;width:23px;height:2px;background:var(--white);border-radius:2px;transition:.3s}
+.hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mm{display:none;position:fixed;top:71px;left:0;right:0;background:rgba(6,12,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:20px 5vw 28px;z-index:998;flex-direction:column;gap:0}
+.mm.open{display:flex}
+.mm a{color:var(--muted);text-decoration:none;font-size:.95rem;padding:13px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mm a:hover{color:var(--white)}
+.mm-sb{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+
+/* ══ HERO ══ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:110px 5vw 80px;
+  background:
+    radial-gradient(ellipse 70% 50% at 65% 100%,rgba(34,197,94,.06) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 60% at 25% 0%,rgba(34,197,94,.11) 0%,transparent 65%);
+}
+.hi{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center}
+
+.hbadge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(34,197,94,.32);background:rgba(34,197,94,.06);
+  border-radius:100px;padding:5px 14px;font-size:.75rem;font-weight:600;color:var(--g);
+  margin-bottom:22px;animation:fu .5s ease both
+}
+.hbadge .dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:bl 2s ease infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3;transform:scale(1.5)}}
+
+h1.ht{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem,4.5vw,4rem);
+  font-weight:800;line-height:1.08;letter-spacing:-1.5px;
+  margin-bottom:18px;animation:fu .5s .08s ease both
+}
+h1.ht .ol{-webkit-text-stroke:1.5px var(--g);color:transparent;font-style:italic}
+h1.ht .gr{color:var(--g)}
+.hdesc{font-size:1rem;line-height:1.75;color:var(--muted);max-width:460px;margin-bottom:34px;animation:fu .5s .16s ease both}
+
+.sr{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px;animation:fu .5s .22s ease both}
+.sb{
+  display:flex;align-items:center;gap:11px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:11px 18px;text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s
+}
+.sb:hover{border-color:var(--g);transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,.12)}
+.sb-tw{display:flex;flex-direction:column}
+.sb-sub{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.sb-name{font-size:.9rem;font-weight:600;color:var(--white)}
+
+.pr{display:flex;align-items:center;gap:12px;animation:fu .5s .28s ease both}
+.avs{display:flex}
+.av{width:30px;height:30px;border-radius:50%;border:2px solid var(--dark);display:flex;align-items:center;justify-content:center;font-size:12px;margin-left:-7px}
+.av:first-child{margin-left:0}
+.av1{background:linear-gradient(135deg,#22c55e,#86efac)}
+.av2{background:linear-gradient(135deg,#3b82f6,#a5f3fc)}
+.av3{background:linear-gradient(135deg,#f97316,#fde68a)}
+.av4{background:linear-gradient(135deg,#ec4899,#fbcfe8)}
+.ptxt{font-size:.81rem;color:var(--muted)}
+.ptxt strong{color:var(--white)}
+.stars{color:var(--warn)}
+
+/* ══ PHONE ══ */
+.hv{position:relative;display:flex;justify-content:center;animation:fu .5s .12s ease both}
+.phone{
+  width:262px;background:var(--card2);border:1px solid var(--border);
+  border-radius:38px;padding:20px 15px 24px;
+  box-shadow:0 48px 96px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.04),0 0 80px rgba(34,197,94,.08);
+  position:relative;overflow:hidden
+}
+.phone::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.15),transparent 70%);pointer-events:none}
+.pn{width:70px;height:7px;background:rgba(255,255,255,.07);border-radius:10px;margin:0 auto 18px}
+.pbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.pbar-t{font-family:'Syne',sans-serif;font-size:.76rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.pbar-i{width:26px;height:26px;background:rgba(34,197,94,.15);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.sa{
+  border:2px dashed rgba(34,197,94,.28);border-radius:14px;height:132px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  position:relative;overflow:hidden;margin-bottom:14px;cursor:pointer;
+  background:rgba(34,197,94,.02);transition:border-color .3s
+}
+.sa:hover{border-color:rgba(34,197,94,.55)}
+.sa .si{font-size:28px}
+.sa p{font-size:.7rem;color:var(--muted)}
+.sline{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);animation:sc 2.5s ease-in-out infinite}
+@keyframes sc{0%{top:0}50%{top:calc(100% - 2px)}100%{top:0}}
+.c{position:absolute;width:14px;height:14px;border-color:var(--g);border-style:solid}
+.c.tl{top:8px;left:8px;border-width:2px 0 0 2px}
+.c.tr{top:8px;right:8px;border-width:2px 2px 0 0}
+.c.bl{bottom:8px;left:8px;border-width:0 0 2px 2px}
+.c.br{bottom:8px;right:8px;border-width:0 2px 2px 0}
+.mcs{display:flex;flex-direction:column;gap:7px}
+.mcr{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.025);border-radius:9px;padding:9px 10px}
+.mcd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.mcn{font-size:.7rem;color:var(--muted);width:54px;flex-shrink:0}
+.mcb{flex:1;height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.mcbf{height:100%;border-radius:4px;animation:gw 1.8s .5s ease both}
+@keyframes gw{from{width:0}}
+.mcv{font-size:.7rem;font-weight:600;width:32px;text-align:right}
+
+.flt{
+  position:absolute;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:10px 14px;box-shadow:0 12px 32px rgba(0,0,0,.5);
+  animation:flt 3.5s ease-in-out infinite
+}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.flt.l{left:-80px;top:22%;animation-delay:0s}
+.flt.r{right:-80px;top:58%;animation-delay:1.6s}
+.flt .fv{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--g);display:block}
+.flt .fl{font-size:.67rem;color:var(--muted)}
+
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ MARQUEE ══ */
+.mq-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--dark2);padding:14px 0}
+.mq-track{display:flex;gap:40px;width:max-content;animation:mq 22s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mqi{display:flex;align-items:center;gap:10px;font-size:.81rem;font-weight:500;color:var(--muted);white-space:nowrap}
+.mqi .d{width:5px;height:5px;background:var(--g);border-radius:50%}
+.mqi .n{font-family:'Syne',sans-serif;font-weight:800;font-size:.93rem;color:var(--g)}
+
+/* ══ SECTIONS ══ */
+.sec{padding:96px 5vw}
+.sc{text-align:center;max-width:640px;margin:0 auto 64px}
+.lbl{
+  display:inline-block;border:1px solid rgba(34,197,94,.3);background:rgba(34,197,94,.05);
+  border-radius:100px;padding:5px 14px;font-size:.73rem;font-weight:600;color:var(--g);
+  text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px
+}
+.sh{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,3.5vw,3rem);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:14px}
+.sp{font-size:1rem;color:var(--muted);line-height:1.7}
+
+/* ══ FEATURES ══ */
+#features{background:var(--dark2)}
+.fg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fc{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:28px;
+  transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden
+}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);opacity:0;transition:opacity .3s}
+.fc:hover{border-color:rgba(34,197,94,.32);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.4)}
+.fc:hover::before{opacity:1}
+.fi{width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.15);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.fh{font-family:'Syne',sans-serif;font-weight:700;font-size:1.04rem;margin-bottom:8px}
+.fp{font-size:.87rem;color:var(--muted);line-height:1.65}
+
+/* ══ HOW ══ */
+#how{background:var(--dark)}
+.sw{max-width:860px;margin:0 auto;position:relative}
+.sl{position:absolute;left:27px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--g),var(--accent),transparent);opacity:.25}
+.st{display:flex;gap:28px;margin-bottom:48px;position:relative}
+.st:last-child{margin-bottom:0}
+.sn{width:54px;height:54px;border-radius:50%;flex-shrink:0;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--g);transition:.3s;position:relative;z-index:1}
+.st:hover .sn{border-color:var(--g);box-shadow:0 0 0 6px rgba(34,197,94,.1)}
+.sb2{padding-top:10px}
+.sth{font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin-bottom:6px}
+.stp{font-size:.9rem;color:var(--muted);line-height:1.65;max-width:520px}
+
+/* ══ ROADMAP ══ */
+#roadmap{background:var(--dark2);background-image:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(34,197,94,.05),transparent)}
+.rw{max-width:920px;margin:0 auto;position:relative}
+.rl{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:linear-gradient(to bottom,var(--g),var(--accent),var(--g),transparent);opacity:.18}
+.ris{display:flex;flex-direction:column;gap:48px}
+.ri{display:grid;grid-template-columns:1fr 60px 1fr;align-items:start}
+
+/* odd: content left */
+.ri:nth-child(odd) .rc{grid-column:1;grid-row:1;text-align:right;padding-right:38px}
+.ri:nth-child(odd) .rnc{grid-column:2;grid-row:1}
+.ri:nth-child(odd) .rs{grid-column:3;grid-row:1}
+/* even: content right */
+.ri:nth-child(even) .rc{grid-column:3;grid-row:1;text-align:left;padding-left:38px}
+.ri:nth-child(even) .rnc{grid-column:2;grid-row:1}
+.ri:nth-child(even) .rs{grid-column:1;grid-row:1}
+
+.rnc{display:flex;justify-content:center;align-items:flex-start;padding-top:4px}
+.rn{width:48px;height:48px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;position:relative;z-index:1;transition:.3s}
+.rn.on{border-color:var(--g);box-shadow:0 0 0 8px rgba(34,197,94,.1);background:rgba(34,197,94,.08)}
+.rd{font-family:'Syne',sans-serif;font-size:.77rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.rtt{font-family:'Syne',sans-serif;font-weight:700;font-size:1.04rem;margin-bottom:6px}
+.rp{font-size:.85rem;color:var(--muted);line-height:1.6}
+.rtag{display:inline-block;margin-top:8px;border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.05);border-radius:6px;padding:3px 10px;font-size:.71rem;font-weight:600;color:var(--g)}
+.rtag.w{border-color:rgba(250,204,21,.25);background:rgba(250,204,21,.05);color:var(--warn)}
+.rtag.live{border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.1);color:var(--g)}
+
+/* ══ PRICING ══ */
+#pricing{background:var(--dark)}
+.pg{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.pc.feat{border-color:rgba(34,197,94,.4);background:linear-gradient(135deg,rgba(34,197,94,.06),var(--card))}
+.pc.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),var(--accent),var(--g),transparent)}
+.pbadge{position:absolute;top:20px;right:20px;background:var(--g);color:#020f04;font-size:.69rem;font-weight:700;padding:4px 10px;border-radius:100px}
+.pplan{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.6px}
+.pname{font-family:'Syne',sans-serif;font-weight:800;font-size:1.45rem;margin-bottom:8px}
+.pdesc{font-size:.83rem;color:var(--muted);margin-bottom:22px}
+.pamt{display:flex;align-items:baseline;gap:4px;margin-bottom:22px}
+.pcur{font-size:1rem;font-weight:600;color:var(--muted)}
+.pnum{font-family:'Syne',sans-serif;font-weight:800;font-size:2.8rem;line-height:1}
+.pper{font-size:.84rem;color:var(--muted)}
+.pbtn{display:block;width:100%;text-align:center;padding:13px;border-radius:10px;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;margin-bottom:22px}
+.pbtn.o{background:transparent;border:1px solid var(--border);color:var(--white)}
+.pbtn.o:hover{border-color:var(--g)}
+.pbtn.s{background:var(--g);border:none;color:#020f04}
+.pbtn.s:hover{background:var(--accent)}
+.pfs{display:flex;flex-direction:column;gap:10px}
+.pf{display:flex;align-items:center;gap:10px;font-size:.85rem}
+.py{color:var(--g)}.pno{color:var(--border)}.tno{color:var(--muted)}
+
+/* ══ TESTIMONIALS ══ */
+#testi{background:var(--dark2)}
+.tg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .25s}
+.tc:hover{border-color:rgba(34,197,94,.25)}
+.ts{color:var(--warn);font-size:.84rem;margin-bottom:12px}
+.tt{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:18px}
+.ta{display:flex;align-items:center;gap:10px}
+.tav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.tname{font-weight:600;font-size:.85rem}
+.trole{font-size:.75rem;color:var(--muted)}
+
+/* ══ FAQ ══ */
+#faq{background:var(--dark)}
+.fw{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.fi2{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s}
+.fi2.open{border-color:rgba(34,197,94,.25)}
+.fq{width:100%;display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:500;color:var(--white);text-align:left;gap:12px}
+.fic{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;color:var(--muted);transition:.3s}
+.fi2.open .fic{transform:rotate(45deg);border-color:var(--g);color:var(--g)}
+.fa{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.fa-i{padding:0 22px 18px;font-size:.87rem;color:var(--muted);line-height:1.7}
+.fi2.open .fa{max-height:300px}
+
+/* ══ CTA ══ */
+#cta{background:var(--dark2);padding:96px 5vw;background-image:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(34,197,94,.08),transparent)}
+.ci{max-width:680px;margin:0 auto;text-align:center;background:var(--card);border:1px solid rgba(34,197,94,.22);border-radius:28px;padding:64px 48px;box-shadow:0 0 80px rgba(34,197,94,.06)}
+.ch{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+.cp{font-size:1rem;color:var(--muted);margin-bottom:34px;line-height:1.7}
+.csr{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:22px}
+.cn{font-size:.8rem;color:var(--muted)}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark2);border-top:1px solid var(--border);padding:64px 5vw 32px}
+.ft{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.fdesc{font-size:.84rem;color:var(--muted);line-height:1.7;max-width:300px;margin:12px 0 20px}
+.fsoc{display:flex;gap:10px}
+.fsb{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;transition:.2s}
+.fsb:hover{border-color:var(--g);background:rgba(34,197,94,.07)}
+.fct{font-family:'Syne',sans-serif;font-weight:700;font-size:.81rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px}
+.fl2{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fl2 a{color:var(--muted);text-decoration:none;font-size:.84rem;transition:color .2s}
+.fl2 a:hover{color:var(--white)}
+.fb{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--border);padding-top:24px}
+.fcopy{font-size:.79rem;color:var(--muted)}
+.fleg{display:flex;gap:20px}
+.fleg a{font-size:.79rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.fleg a:hover{color:var(--white)}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1080px){
+  .hi{grid-template-columns:1fr;gap:48px}
+  .hv{order:-1}
+  .flt{display:none}
+  .fg{grid-template-columns:repeat(2,1fr)}
+  .tg{grid-template-columns:repeat(2,1fr)}
+  .ft{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:768px){
+  .nl,.na{display:none}
+  .hbg{display:flex}
+  #hero{padding:90px 5vw 60px}
+  h1.ht{font-size:2.3rem}
+  .fg{grid-template-columns:1fr}
+  .pg{grid-template-columns:1fr}
+  .tg{grid-template-columns:1fr}
+  .rl{display:none}
+  .ri{grid-template-columns:1fr}
+  .ri:nth-child(odd) .rc,.ri:nth-child(even) .rc{grid-column:1;grid-row:2;text-align:left;padding:12px 0 0 0}
+  .ri:nth-child(odd) .rnc,.ri:nth-child(even) .rnc{grid-column:1;grid-row:1}
+  .ri:nth-child(odd) .rs,.ri:nth-child(even) .rs{display:none}
+  .ri{padding-left:18px;border-left:2px solid rgba(34,197,94,.2)}
+  .ft{grid-template-columns:1fr}
+  .ci{padding:40px 24px}
+  .fb{flex-direction:column;text-align:center}
+  .sl{display:none}
+}
+@media(max-width:480px){
+  .sec{padding:64px 5vw}
+  .sr{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-mark">🌿</div>
+    <span class="logo-name">AI&nbsp;<em>Nutri</em>Scan</span>
+  </a>
+  <ul class="nl">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="na">
+    <a href="#" class="bg">Log In</a>
+    <a href="#" class="bs">Get Started Free</a>
+  </div>
+  <button class="hbg" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mm" id="mm">
+  <a href="#features">Features</a>
+  <a href="#how">How It Works</a>
+  <a href="#roadmap">Roadmap 2026</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#faq">FAQ</a>
+  <div class="mm-sb">
+    <a href="#" class="sb">
+      <svg width="20" height="24" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-155.8-106.9c-48-65.4-91.8-167.7-91.8-264.3 0-187.6 123.5-285.9 244.8-285.9 60.3 0 110.5 40.8 148.4 40.8 36.8 0 93.2-43.2 161.2-43.2 26 0 108.2 2.6 168.5 81.4zm-137.1-230.1c28.1-32.2 49.3-78.5 49.3-124.8 0-6.4-.6-12.9-1.9-18.1-46.1 1.9-101.1 30.5-133.2 67.3-24.5 27.5-48.3 73.2-48.3 119.5 0 7.1 1.3 14.2 1.9 16.5 2.6.6 6.5 1.3 10.3 1.3 41.4 0 93.9-27.5 121.9-61.7z"/></svg>
+      <div class="sb-tw"><span class="sb-sub">Download on the</span><span class="sb-name">App Store</span></div>
+    </a>
+    <a href="#" class="sb">
+      <svg width="20" height="22" viewBox="0 0 512 512"><path d="M48 432L232 256 48 80v352z" fill="#EA4335"/><path d="M232 256l80 80 120-68-80-80-120 68z" fill="#FBBC04"/><path d="M48 80l184 176L392 80z" fill="#4285F4"/><path d="M48 432l184-176 160 96-184 176z" fill="#34A853"/></svg>
+      <div class="sb-tw"><span class="sb-sub">Get it on</span><span class="sb-name">Google Play</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hi">
+    <div>
+      <div class="hbadge"><span class="dot"></span>Now Launching in Orynth — March 2026</div>
+      <h1 class="ht">
+        Know Exactly<br>
+        <span class="ol">What You Eat</span><br>
+        <span class="gr">Instantly.</span>
+      </h1>
+      <p class="hdesc">AI NutriScan reads your food in seconds. Just snap a photo — get full macro breakdowns, calorie counts, and personalised nutrition insights. No manual logging. Ever.</p>
+      <div class="sr">
+        <a href="#" class="sb">
+          <svg width="22" height="26" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-155.8-106.9c-48-65.4-91.8-167.7-91.8-264.3 0-187.6 123.5-285.9 244.8-285.9 60.3 0 110.5 40.8 148.4 40.8 36.8 0 93.2-43.2 161.2-43.2 26 0 108.2 2.6 168.5 81.4zm-137.1-230.1c28.1-32.2 49.3-78.5 49.3-124.8 0-6.4-.6-12.9-1.9-18.1-46.1 1.9-101.1 30.5-133.2 67.3-24.5 27.5-48.3 73.2-48.3 119.5 0 7.1 1.3 14.2 1.9 16.5 2.6.6 6.5 1.3 10.3 1.3 41.4 0 93.9-27.5 121.9-61.7z"/></svg>
+          <div class="sb-tw"><span class="sb-sub">Download on the</span><span class="sb-name">App Store</span></div>
+        </a>
+        <a href="#" class="sb">
+          <svg width="22" height="24" viewBox="0 0 512 512"><path d="M48 432L232 256 48 80v352z" fill="#EA4335"/><path d="M232 256l80 80 120-68-80-80-120 68z" fill="#FBBC04"/><path d="M48 80l184 176L392 80z" fill="#4285F4"/><path d="M48 432l184-176 160 96-184 176z" fill="#34A853"/></svg>
+          <div class="sb-tw"><span class="sb-sub">Get it on</span><span class="sb-name">Google Play</span></div>
+        </a>
+      </div>
+      <div class="pr">
+        <div class="avs">
+          <div class="av av1">👩</div>
+          <div class="av av2">🧑</div>
+          <div class="av av3">👨</div>
+          <div class="av av4">🧕</div>
+        </div>
+        <div class="ptxt">
+          <span class="stars">★★★★★</span><br>
+          Trusted by <strong>12,000+</strong> early users
+        </div>
+      </div>
+    </div>
+
+    <!-- PHONE MOCKUP -->
+    <div class="hv">
+      <div class="flt l"><span class="fv">482 kcal</span><span class="fl">Today's meal</span></div>
+      <div class="phone">
+        <div class="pn"></div>
+        <div class="pbar">
+          <span class="pbar-t">AI NutriScan</span>
+          <div class="pbar-i">🌿</div>
+        </div>
+        <div class="sa">
+          <div class="c tl"></div><div class="c tr"></div>
+          <div class="c bl"></div><div class="c br"></div>
+          <div class="sline"></div>
+          <span class="si">📷</span>
+          <p>Tap to scan your food</p>
+        </div>
+        <div class="mcs">
+          <div class="mcr">
+            <div class="mcd" style="background:#22c55e"></div>
+            <span class="mcn">Calories</span>
+            <div class="mcb"><div class="mcbf" style="width:68%;background:#22c55e"></div></div>
+            <span class="mcv" style="color:#22c55e">482</span>
+          </div>
+          <div class="mcr">
+            <div class="mcd" style="background:#3b82f6"></div>
+            <span class="mcn">Protein</span>
+            <div class="mcb"><div class="mcbf" style="width:52%;background:#3b82f6"></div></div>
+            <span class="mcv" style="color:#3b82f6">32g</span>
+          </div>
+          <div class="mcr">
+            <div class="mcd" style="background:#f97316"></div>
+            <span class="mcn">Carbs</span>
+            <div class="mcb"><div class="mcbf" style="width:74%;background:#f97316"></div></div>
+            <span class="mcv" style="color:#f97316">58g</span>
+          </div>
+          <div class="mcr">
+            <div class="mcd" style="background:#a855f7"></div>
+            <span class="mcn">Fat</span>
+            <div class="mcb"><div class="mcbf" style="width:38%;background:#a855f7"></div></div>
+            <span class="mcv" style="color:#a855f7">14g</span>
+          </div>
+        </div>
+      </div>
+      <div class="flt r"><span class="fv">98% Match</span><span class="fl">AI accuracy</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="mq-wrap">
+  <div class="mq-track">
+    <div class="mqi"><span class="d"></span>AI Food Recognition</div>
+    <div class="mqi"><span class="n">🌿</span>Macro Tracking</div>
+    <div class="mqi"><span class="d"></span>Calorie Estimation</div>
+    <div class="mqi"><span class="n">📊</span>Nutrition Analytics</div>
+    <div class="mqi"><span class="d"></span>Meal Planning</div>
+    <div class="mqi"><span class="n">🎓</span>Campus Partnership</div>
+    <div class="mqi"><span class="d"></span>Farm-to-Table Tracing</div>
+    <div class="mqi"><span class="n">🍽️</span>Restaurant Integration</div>
+    <div class="mqi"><span class="d"></span>Launching Orynth — March 2026</div>
+    <div class="mqi"><span class="n">💱</span>Exchange Listing — April 2026</div>
+    <!-- duplicate -->
+    <div class="mqi"><span class="d"></span>AI Food Recognition</div>
+    <div class="mqi"><span class="n">🌿</span>Macro Tracking</div>
+    <div class="mqi"><span class="d"></span>Calorie Estimation</div>
+    <div class="mqi"><span class="n">📊</span>Nutrition Analytics</div>
+    <div class="mqi"><span class="d"></span>Meal Planning</div>
+    <div class="mqi"><span class="n">🎓</span>Campus Partnership</div>
+    <div class="mqi"><span class="d"></span>Farm-to-Table Tracing</div>
+    <div class="mqi"><span class="n">🍽️</span>Restaurant Integration</div>
+    <div class="mqi"><span class="d"></span>Launching Orynth — March 2026</div>
+    <div class="mqi"><span class="n">💱</span>Exchange Listing — April 2026</div>
+  </div>
+</div>
+
+<!-- ══ FEATURES ══ -->
+<section id="features" class="sec">
+  <div class="sc">
+    <span class="lbl">Why AI NutriScan</span>
+    <h2 class="sh">Built for people who<br>actually care what they eat</h2>
+    <p class="sp">From students to professional athletes — AI NutriScan gives everyone the nutritional intelligence they deserve, powered by the latest AI vision technology.</p>
+  </div>
+  <div class="fg">
+    <div class="fc">
+      <div class="fi">📷</div>
+      <h3 class="fh">Instant Photo Scanning</h3>
+      <p class="fp">Snap a photo of any meal — home-cooked, restaurant, or street food — and get a complete nutrient breakdown in under 3 seconds. Recognises thousands of local and international dishes.</p>
+    </div>
+    <div class="fc">
+      <div class="fi">📊</div>
+      <h3 class="fh">Full Macro Dashboard</h3>
+      <p class="fp">Track calories, protein, carbohydrates, fat, fibre, vitamins, and minerals all in one clean dashboard. Understand your nutritional balance across days and weeks.</p>
+    </div>
+    <div class="fc">
+      <div class="fi">🤖</div>
+      <h3 class="fh">AI Nutrition Insights</h3>
+      <p class="fp">Get personalised recommendations based on your goals, dietary preferences, and health history. Our AI learns your habits and suggests smarter food choices every day.</p>
+    </div>
+    <div class="fc">
+      <div class="fi">🌾</div>
+      <h3 class="fh">Farm & Ingredient Tracing</h3>
+      <p class="fp">Know where your food comes from. AI NutriScan partners with local farmers to provide full ingredient traceability — from field to plate — with freshness and sustainability scores.</p>
+    </div>
+    <div class="fc">
+      <div class="fi">🍽️</div>
+      <h3 class="fh">Restaurant Menu Scanner</h3>
+      <p class="fp">Eating out? Scan the menu or your dish at partner restaurants and instantly see the nutritional value of everything you order. No guesswork — just full clarity.</p>
+    </div>
+    <div class="fc">
+      <div class="fi">🎓</div>
+      <h3 class="fh">Campus Nutrition Programme</h3>
+      <p class="fp">Special partnerships with universities to bring AI NutriScan to student canteens, health programmes, and nutrition research labs, supporting healthier campus communities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="how" class="sec" style="background:var(--dark)">
+  <div class="sc">
+    <span class="lbl">How It Works</span>
+    <h2 class="sh">Three steps to smarter eating</h2>
+    <p class="sp">No spreadsheets. No manual entry. Just point, scan, and understand your food in real time.</p>
+  </div>
+  <div class="sw">
+    <div class="sl"></div>
+    <div class="st">
+      <div class="sn">1</div>
+      <div class="sb2">
+        <h3 class="sth">📷 Snap Your Food</h3>
+        <p class="stp">Open the AI NutriScan app and photograph your meal — or upload from your gallery. Works with any food, any plate size, under any lighting condition.</p>
+      </div>
+    </div>
+    <div class="st">
+      <div class="sn">2</div>
+      <div class="sb2">
+        <h3 class="sth">🤖 AI Analyses Instantly</h3>
+        <p class="stp">Our computer vision AI identifies every ingredient on your plate, estimates portions with precision, and calculates full macros and micronutrients in under 3 seconds.</p>
+      </div>
+    </div>
+    <div class="st">
+      <div class="sn">3</div>
+      <div class="sb2">
+        <h3 class="sth">📊 Get Smart Insights</h3>
+        <p class="stp">View your complete nutritional breakdown. Track daily and weekly trends. Receive personalised recommendations to help you hit your goals — weight loss, muscle gain, or simply eating healthier.</p>
+      </div>
+    </div>
+    <div class="st">
+      <div class="sn">4</div>
+      <div class="sb2">
+        <h3 class="sth">🔄 Build Better Habits</h3>
+        <p class="stp">AI NutriScan learns your eating patterns over time and proactively nudges you toward better choices — without being preachy or restrictive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ROADMAP ══ -->
+<section id="roadmap" class="sec">
+  <div class="sc">
+    <span class="lbl">Roadmap 2026</span>
+    <h2 class="sh">Our journey, your growth</h2>
+    <p class="sp">From our first city launch to a full ecosystem — here is how AI NutriScan grows with communities across Indonesia and beyond.</p>
+  </div>
+  <div class="rw">
+    <div class="rl"></div>
+    <div class="ris">
+
+      <div class="ri">
+        <div class="rc">
+          <div class="rd">March 2026</div>
+          <h3 class="rtt">🚀 Official Launch — Orynth</h3>
+          <p class="rp">AI NutriScan publicly launches in Orynth, beginning our mission to bring intelligent nutrition to everyday people. Available on iOS and Android from day one.</p>
+          <span class="rtag live">🟢 Live Now</span>
+        </div>
+        <div class="rnc"><div class="rn on">🚀</div></div>
+        <div class="rs"></div>
+      </div>
+
+      <div class="ri">
+        <div class="rs"></div>
+        <div class="rnc"><div class="rn on">🎓</div></div>
+        <div class="rc">
+          <div class="rd">April 2026 — Early</div>
+          <h3 class="rtt">🎓 Campus Partnership Programme</h3>
+          <p class="rp">Partnering with leading universities and academic institutions to integrate AI NutriScan into campus canteens, student health programmes, and nutrition research initiatives.</p>
+          <span class="rtag">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="ri">
+        <div class="rc">
+          <div class="rd">April 2026 — Mid</div>
+          <h3 class="rtt">🌾 Farmer &amp; Supply Chain Integration</h3>
+          <p class="rp">Direct partnerships with local farmers and agricultural cooperatives to enable ingredient traceability. Users see the origin, freshness score, and sustainability rating of their food.</p>
+          <span class="rtag">Coming Soon</span>
+        </div>
+        <div class="rnc"><div class="rn">🌾</div></div>
+        <div class="rs"></div>
+      </div>
+
+      <div class="ri">
+        <div class="rs"></div>
+        <div class="rnc"><div class="rn">🍽️</div></div>
+        <div class="rc">
+          <div class="rd">April 2026 — Mid</div>
+          <h3 class="rtt">🍽️ Restaurant &amp; Warung Network</h3>
+          <p class="rp">Onboarding local restaurants, warungs, food courts, and catering services onto the AI NutriScan partner network — giving diners real-time nutrition info at every meal out.</p>
+          <span class="rtag">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="ri">
+        <div class="rc">
+          <div class="rd">April 2026 — Late</div>
+          <h3 class="rtt">💱 Exchange Listing</h3>
+          <p class="rp">The NutriScan token launches on major cryptocurrency exchanges, enabling our community to participate in the ecosystem, governance, and future development of the platform.</p>
+          <span class="rtag w">🔥 High Impact</span>
+        </div>
+        <div class="rnc"><div class="rn">💱</div></div>
+        <div class="rs"></div>
+      </div>
+
+      <div class="ri">
+        <div class="rs"></div>
+        <div class="rnc"><div class="rn">🌏</div></div>
+        <div class="rc">
+          <div class="rd">Q3 2026</div>
+          <h3 class="rtt">🌏 National Expansion</h3>
+          <p class="rp">Scale AI NutriScan to 10 major Indonesian cities including Jakarta, Surabaya, Bandung, and Makassar. Begin groundwork for Southeast Asia expansion.</p>
+          <span class="rtag">Planned</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testi" class="sec">
+  <div class="sc">
+    <span class="lbl">Early Users Love It</span>
+    <h2 class="sh">What our beta community says</h2>
+  </div>
+  <div class="tg">
+    <div class="tc">
+      <div class="ts">★★★★★</div>
+      <p class="tt">"I've been trying to track my nutrition for years but manual logging always felt like a chore. AI NutriScan changed everything — I just snap my nasi goreng and it does the rest."</p>
+      <div class="ta">
+        <div class="tav" style="background:linear-gradient(135deg,#22c55e,#86efac)">👩</div>
+        <div><div class="tname">Anita Rahmawati</div><div class="trole">Nutritionist, Jakarta</div></div>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="ts">★★★★★</div>
+      <p class="tt">"As a sports coach I need my athletes tracking their macros properly. AI NutriScan is the first app that can accurately identify local Indonesian dishes. Absolute game changer."</p>
+      <div class="ta">
+        <div class="tav" style="background:linear-gradient(135deg,#3b82f6,#a5f3fc)">👨</div>
+        <div><div class="tname">Budi Santoso</div><div class="trole">Sports Coach, Surabaya</div></div>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="ts">★★★★★</div>
+      <p class="tt">"The campus partnership programme is exactly what our nutrition department has been waiting for. Our students now have real data about what they eat daily at the canteen."</p>
+      <div class="ta">
+        <div class="tav" style="background:linear-gradient(135deg,#f97316,#fde68a)">🧑‍🏫</div>
+        <div><div class="tname">Dr. Sari Kusuma</div><div class="trole">Lecturer, Universitas Indonesia</div></div>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="ts">★★★★☆</div>
+      <p class="tt">"I run a warung and the restaurant integration lets my customers see the nutritional info of my dishes. More trust, more loyal customers. Win-win for everyone."</p>
+      <div class="ta">
+        <div class="tav" style="background:linear-gradient(135deg,#ec4899,#fbcfe8)">👩‍🍳</div>
+        <div><div class="tname">Wulan Dewi</div><div class="trole">Warung Owner, Bandung</div></div>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="ts">★★★★★</div>
+      <p class="tt">"The AI accuracy blew me away. It identified tempeh, sayur asem, and sambal terasi separately from a single photo. I have never seen anything like it in an Indonesian app."</p>
+      <div class="ta">
+        <div class="tav" style="background:linear-gradient(135deg,#a855f7,#e9d5ff)">🧑</div>
+        <div><div class="tname">Rizky Pratama</div><div class="trole">Software Engineer, Bandung</div></div>
+      </div>
+    </div>
+    <div class="tc">
+      <div class="ts">★★★★★</div>
+      <p class="tt">"As a farmer partnering with AI NutriScan, I finally feel connected to the people eating my produce. The traceability feature gives my work real meaning and greater value."</p>
+      <div class="ta">
+        <div class="tav" style="background:linear-gradient(135deg,#22c55e,#fde68a)">🧑‍🌾</div>
+        <div><div class="tname">Pak Hendra</div><div class="trole">Organic Farmer, Malang</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ══ -->
+<section id="pricing" class="sec" style="background:var(--dark)">
+  <div class="sc">
+    <span class="lbl">Pricing</span>
+    <h2 class="sh">Simple, honest pricing</h2>
+    <p class="sp">Start free forever. Upgrade when you need more power. No hidden fees, no surprises.</p>
+  </div>
+  <div class="pg">
+    <div class="pc">
+      <div class="pplan">Free</div>
+      <div class="pname">Starter</div>
+      <div class="pdesc">Perfect for exploring AI NutriScan for the first time</div>
+      <div class="pamt"><span class="pcur">Rp</span><span class="pnum">0</span><span class="pper">/ month</span></div>
+      <a href="#" class="pbtn o">Get Started Free</a>
+      <div class="pfs">
+        <div class="pf"><span class="py">✓</span> 5 scans per day</div>
+        <div class="pf"><span class="py">✓</span> Basic macro breakdown</div>
+        <div class="pf"><span class="py">✓</span> 7-day scan history</div>
+        <div class="pf"><span class="py">✓</span> iOS &amp; Android app</div>
+        <div class="pf"><span class="pno">✗</span> <span class="tno">Unlimited scans</span></div>
+        <div class="pf"><span class="pno">✗</span> <span class="tno">AI personalisation</span></div>
+        <div class="pf"><span class="pno">✗</span> <span class="tno">Ingredient tracing</span></div>
+        <div class="pf"><span class="pno">✗</span> <span class="tno">PDF nutrition reports</span></div>
+      </div>
+    </div>
+    <div class="pc feat">
+      <div class="pbadge">Most Popular</div>
+      <div class="pplan">Premium</div>
+      <div class="pname">Pro</div>
+      <div class="pdesc">For those serious about health and long-term nutrition</div>
+      <div class="pamt"><span class="pcur">Rp</span><span class="pnum">49K</span><span class="pper">/ month</span></div>
+      <a href="#" class="pbtn s">Start Free Trial</a>
+      <div class="pfs">
+        <div class="pf"><span class="py">✓</span> Unlimited scans</div>
+        <div class="pf"><span class="py">✓</span> Full macro &amp; micronutrients</div>
+        <div class="pf"><span class="py">✓</span> Complete scan history</div>
+        <div class="pf"><span class="py">✓</span> AI personalised insights</div>
+        <div class="pf"><span class="py">✓</span> Ingredient origin tracing</div>
+        <div class="pf"><span class="py">✓</span> Restaurant menu scanner</div>
+        <div class="pf"><span class="py">✓</span> PDF nutrition reports</div>
+        <div class="pf"><span class="py">✓</span> Priority support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq" class="sec" style="background:var(--dark2)">
+  <div class="sc">
+    <span class="lbl">FAQ</span>
+    <h2 class="sh">Frequently asked questions</h2>
+  </div>
+  <div class="fw">
+    <div class="fi2 open">
+      <button class="fq">How accurate is AI NutriScan's food analysis?<div class="fic">+</div></button>
+      <div class="fa"><div class="fa-i">Our AI model achieves over 95% accuracy identifying Indonesian and international dishes. Trained on millions of food images and continuously improving with every scan. For multi-component meals, it analyses each ingredient separately for maximum precision.</div></div>
+    </div>
+    <div class="fi2">
+      <button class="fq">Can it recognise local Indonesian food?<div class="fic">+</div></button>
+      <div class="fa"><div class="fa-i">Absolutely. AI NutriScan is trained on a vast database of Indonesian dishes including rendang, nasi goreng, gado-gado, soto, tempeh, bakso, and hundreds more. Recognising local food accurately is our core strength — not an afterthought.</div></div>
+    </div>
+    <div class="fi2">
+      <button class="fq">Is my personal health data safe and private?<div class="fic">+</div></button>
+      <div class="fa"><div class="fa-i">We take data privacy extremely seriously. Your nutritional data is encrypted end-to-end and stored securely on our servers. We never sell personal data to third parties. You have full control to export or permanently delete your data at any time from within the app.</div></div>
+    </div>
+    <div class="fi2">
+      <button class="fq">How does the campus partnership programme work?<div class="fic">+</div></button>
+      <div class="fa"><div class="fa-i">Universities can partner with AI NutriScan to get a customised platform integrated into their canteen systems. Students receive free or subsidised access, and institutions get aggregated anonymous nutritional data for health planning and academic research.</div></div>
+    </div>
+    <div class="fi2">
+      <button class="fq">When will AI NutriScan reach my city?<div class="fic">+</div></button>
+      <div class="fa"><div class="fa-i">We officially launch in Orynth in March 2026. National expansion to 10 major Indonesian cities is planned for Q3 2026. Pre-register now to be notified the moment AI NutriScan reaches your city and receive exclusive early-access pricing.</div></div>
+    </div>
+    <div class="fi2">
+      <button class="fq">What is the Exchange listing about?<div class="fic">+</div></button>
+      <div class="fa"><div class="fa-i">In late April 2026, the NutriScan token will be listed on major cryptocurrency exchanges. This allows our community to participate in the ecosystem's growth, earn rewards for contributions, and have a voice in the platform's future development through governance voting.</div></div>
+    </div>
+    <div class="fi2">
+      <button class="fq">Does AI NutriScan work offline?<div class="fic">+</div></button>
+      <div class="fa"><div class="fa-i">Core scanning requires an internet connection to access our AI models. However, the Pro plan includes offline access to your full scan history, meal logs, and nutrition reports — so your data is always available even without connectivity.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ══ -->
+<section id="cta">
+  <div class="ci">
+    <span class="lbl">Download Free Today</span>
+    <h2 class="ch">Start eating smarter.<br>Download free today.</h2>
+    <p class="cp">Join thousands of early users already tracking their nutrition effortlessly with AI NutriScan. Available on iOS and Android — free to start, no credit card required.</p>
+    <div class="csr">
+      <a href="#" class="sb">
+        <svg width="22" height="26" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-155.8-106.9c-48-65.4-91.8-167.7-91.8-264.3 0-187.6 123.5-285.9 244.8-285.9 60.3 0 110.5 40.8 148.4 40.8 36.8 0 93.2-43.2 161.2-43.2 26 0 108.2 2.6 168.5 81.4zm-137.1-230.1c28.1-32.2 49.3-78.5 49.3-124.8 0-6.4-.6-12.9-1.9-18.1-46.1 1.9-101.1 30.5-133.2 67.3-24.5 27.5-48.3 73.2-48.3 119.5 0 7.1 1.3 14.2 1.9 16.5 2.6.6 6.5 1.3 10.3 1.3 41.4 0 93.9-27.5 121.9-61.7z"/></svg>
+        <div class="sb-tw"><span class="sb-sub">Download on the</span><span class="sb-name">App Store</span></div>
+      </a>
+      <a href="#" class="sb">
+        <svg width="22" height="24" viewBox="0 0 512 512"><path d="M48 432L232 256 48 80v352z" fill="#EA4335"/><path d="M232 256l80 80 120-68-80-80-120 68z" fill="#FBBC04"/><path d="M48 80l184 176L392 80z" fill="#4285F4"/><path d="M48 432l184-176 160 96-184 176z" fill="#34A853"/></svg>
+        <div class="sb-tw"><span class="sb-sub">Get it on</span><span class="sb-name">Google Play</span></div>
+      </a>
+    </div>
+    <p class="cn">Free to download · No credit card required · Cancel anytime</p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="ft">
+    <div>
+      <a href="#" class="logo">
+        <div class="logo-mark">🌿</div>
+        <span class="logo-name" style="margin-left:10px">AI&nbsp;<em>Nutri</em>Scan</span>
+      </a>
+      <p class="fdesc">Your intelligent nutrition companion. Scan meals, track macros, and build healthy habits — powered by AI, designed for real life across Indonesia.</p>
+      <div class="fsoc">
+        <a href="#" class="fsb" title="Instagram">📸</a>
+        <a href="#" class="fsb" title="X / Twitter">𝕏</a>
+        <a href="#" class="fsb" title="TikTok">🎵</a>
+        <a href="#" class="fsb" title="LinkedIn">in</a>
+        <a href="#" class="fsb" title="YouTube">▶</a>
+      </div>
+    </div>
+    <div>
+      <div class="fct">Navigate</div>
+      <ul class="fl2">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#roadmap">Roadmap 2026</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testi">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Programme</div>
+      <ul class="fl2">
+        <li><a href="#">Campus Partnership</a></li>
+        <li><a href="#">Restaurant Network</a></li>
+        <li><a href="#">Farmer Programme</a></li>
+        <li><a href="#">Token &amp; Exchange</a></li>
+        <li><a href="#">Affiliate Programme</a></li>
+        <li><a href="#">Enterprise</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Legal</div>
+      <ul class="fl2">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb">
+    <p class="fcopy">© 2026 AI NutriScan. All rights reserved. Launching from Orynth 🌿</p>
+    <div class="fleg">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hamburger
+const ham=document.getElementById('ham'),mm=document.getElementById('mm');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mm.classList.toggle('open')});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');mm.classList.remove('open')}));
+
+// Nav shrink on scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.padding=window.scrollY>60?'12px 5vw':'16px 5vw';
+});
+
+// FAQ accordion
+document.querySelectorAll('.fq').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.fi2'),isOpen=item.classList.contains('open');
+    document.querySelectorAll('.fi2').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}
+  });
+},{threshold:.1});
+document.querySelectorAll('.fc,.st,.ri,.tc,.pc,.fi2').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(18px)';
+  el.style.transition='opacity .5s ease,transform .5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
