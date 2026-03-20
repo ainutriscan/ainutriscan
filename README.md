@@ -193,10 +193,9 @@ Authorization: Bearer {token}
 ## 🌍 Localisation
 
 AI NutriScan natively supports:
-- 🇮🇩 Indonesian (Bahasa Indonesia)
 - 🇬🇧 English
-- 🇸🇦 Arabic *(coming Q3 2026)*
-- 🇲🇾 Malay *(coming Q3 2026)*
+- 🇸🇦 Arabic 
+- 🇲🇾 Malay 
 
 ---
 
