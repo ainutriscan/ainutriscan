@@ -1,0 +1,85 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.expo/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.eslintcache
+.parcelcache
+.turbo/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python (ML services)
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ML model artifacts
+*.pt
+*.pth
+*.onnx
+*.bin
+*.safetensors
+models/weights/
+
+# Misc
+.vercel
+.netlify
+*.tgz
