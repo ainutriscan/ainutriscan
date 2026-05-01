@@ -1,0 +1,52 @@
+{
+  "name": "ainutriscan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-powered nutrition intelligence — scan any meal and get full macro breakdowns in under 3 seconds.",
+  "author": "AI NutriScan Team <hello@nutriscan.ai>",
+  "license": "MIT",
+  "homepage": "https://nutriscan.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ainutriscan/ainutriscan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ainutriscan/ainutriscan/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\""
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0",
+    "prettier": "^3.2.0",
+    "eslint": "^9.0.0"
+  },
+  "keywords": [
+    "nutrition",
+    "ai",
+    "food-scanner",
+    "health",
+    "machine-learning",
+    "computer-vision",
+    "react-native",
+    "nextjs",
+    "indonesia"
+  ]
+}
