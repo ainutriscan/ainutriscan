@@ -4,8 +4,7 @@
 
 AI NutriScan is an AI-powered nutrition intelligence app that instantly analyses any meal from a photo — delivering a complete breakdown of calories, macros, and micronutrients in under 3 seconds. No manual logging. No guesswork. Just point, scan, and know exactly what you're eating.
 
-[![Featured on Orynth](https://orynth.dev/api/badge/nutriscan-ai?theme=light&style=default)](https://orynth.dev/projects/nutriscan-ai)
-[![Follow on X](https://img.shields.io/badge/Follow-%40nutriscandotfun-black?style=flat&logo=x)](https://x.com/nutriscandotfun)
+[![Follow on X](https://img.shields.io/badge/Follow-%40nutriscan__ai-black?style=flat&logo=x)](https://x.com/nutriscan_ai)
 [![GitHub Stars](https://img.shields.io/github/stars/ainutriscan/ainutriscan?style=flat&color=22c55e)](https://github.com/ainutriscan/ainutriscan)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -34,7 +33,7 @@ AI NutriScan is an AI-powered nutrition intelligence app that instantly analyses
 
 | Date | Milestone | Status |
 |------|-----------|--------|
-| **March 2026** | 🚀 Official Launch — Orynth | ✅ Live |
+| **March 2026** | 🚀 Official Launch — Public Beta | ✅ Live |
 | **April (Early)** | 🎓 Campus Partnership Programme | 🔜 Coming Soon |
 | **April (Mid)** | 🌾 Farmer & Supply Chain Integration | 🔜 Coming Soon |
 | **April (Mid)** | 🍽️ Restaurant & Warung Network | 🔜 Coming Soon |
@@ -123,11 +122,11 @@ ainutriscan/
 
 | Name | Role | Location |
 |------|------|----------|
-| **Nana Beauchamp-Tremblay** | CEO & Co-Founder | Vancouver, Canada 🇨🇦 |
-| **Liam Okonkwo-Pearce** | CTO & Co-Founder | Toronto, Canada 🇨🇦 |
-| **Zoé Larivière-Bouchard** | Head of Design | Montréal, Canada 🇨🇦 |
+| **Emma Richardson** | CEO & Co-Founder | London, UK 🇬🇧 |
+| **James Park** | CTO & Co-Founder | Singapore 🇸🇬 |
+| **Lena Mueller** | Head of Design | Berlin, Germany 🇩🇪 |
 
-Follow us on X: [@nutriscandotfun](https://x.com/nutriscandotfun)
+Follow us on X: [@nutriscan_ai](https://x.com/nutriscan_ai)
 
 ---
 
@@ -226,9 +225,8 @@ git push origin feature/your-feature-name
 
 | Channel | Link |
 |---------|------|
-| 𝕏 Twitter / X | [@nutriscandotfun](https://x.com/nutriscandotfun) |
+| 𝕏 Twitter / X | [@nutriscan_ai](https://x.com/nutriscan_ai) |
 | GitHub | [ainutriscan/ainutriscan](https://github.com/ainutriscan/ainutriscan) |
-| Orynth | [orynth.dev/projects/nutriscan-ai](https://orynth.dev/projects/nutriscan-ai) |
 | Email | hello@nutriscan.ai |
 
 ---
@@ -240,8 +238,5 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ---
 
 <div align="center">
-  <strong>Built with ❤️ by the AI NutriScan team · Launching from Orynth 🌿</strong><br/>
-  <a href="https://orynth.dev/projects/nutriscan-ai">
-    <img src="https://orynth.dev/api/badge/nutriscan-ai?theme=light&style=default" alt="Featured on Orynth" width="200" height="56"/>
-  </a>
+  <strong>Built with ❤️ by the AI NutriScan team</strong>
 </div>
