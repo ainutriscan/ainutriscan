@@ -126,7 +126,7 @@ ainutriscan/
 | **James Park** | CTO & Co-Founder | Singapore 🇸🇬 |
 | **Lena Mueller** | Head of Design | Berlin, Germany 🇩🇪 |
 
-Follow us on X: [@nutriscan_ai](https://x.com/nutriscan_ai)
+Follow us on X: [@Federico16z](https://x.com/Federico16z)
 
 ---
 
