@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --g:#22c55e;--g2:#16a34a;--accent:#bbf7d0;
-  --dark:#05090a;--dark2:#0a1012;--card:#0f1a1c;--card2:#111e20;
-  --border:#1a2e30;--muted:#4d7a7e;--white:#e8f4f5;--warn:#facc15;
+  --g:#18a558;--g2:#127a3f;--accent:#bbf7d0;
+  --dark:#05090a;--dark2:#080f11;--card:#0d1618;--card2:#101c1f;
+  --border:#172325;--muted:#4d7a7e;--white:#e8f4f5;--warn:#facc15;
   --font:'Inter',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -23,7 +23,7 @@ nav{
   position:fixed;top:0;left:0;right:0;z-index:999;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 5vw;height:64px;
-  background:rgba(5,9,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  background:rgba(5,9,10,.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);transition:height .3s;
 }
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
@@ -45,14 +45,14 @@ nav{
   font-size:.82rem;font-weight:500;cursor:pointer;transition:.2s;
   text-decoration:none;display:inline-block;letter-spacing:-.1px
 }
-.btn-o:hover{border-color:rgba(34,197,94,.5);color:var(--g)}
+.btn-o:hover{border-color:rgba(24,165,88,.5);color:var(--g)}
 .btn-g{
-  background:var(--g);color:#020d04;
+  background:var(--g);color:#fff;
   padding:7px 18px;border-radius:7px;border:none;font-family:var(--font);
   font-size:.82rem;font-weight:600;cursor:pointer;transition:.2s;
   text-decoration:none;display:inline-block;letter-spacing:-.1px
 }
-.btn-g:hover{background:#28e06b;transform:translateY(-1px)}
+.btn-g:hover{background:#1bbe63;transform:translateY(-1px)}
 
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .hbg span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;transition:.3s}
@@ -71,31 +71,32 @@ nav{
   min-height:100vh;display:flex;align-items:center;
   padding:100px 5vw 80px;
   background:
-    radial-gradient(ellipse 60% 55% at 20% 5%,rgba(34,197,94,.09) 0%,transparent 65%),
-    radial-gradient(ellipse 50% 40% at 80% 95%,rgba(34,197,94,.05) 0%,transparent 60%);
+    radial-gradient(ellipse 55% 50% at 15% 0%,rgba(24,165,88,.07) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 35% at 85% 100%,rgba(24,165,88,.04) 0%,transparent 65%);
 }
 .hi{max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 400px;gap:72px;align-items:center}
 
+/* status pill — product-grade, not generic "AI launch" */
 .hbadge{
-  display:inline-flex;align-items:center;gap:7px;
-  border:1px solid rgba(34,197,94,.28);background:rgba(34,197,94,.06);
-  border-radius:100px;padding:5px 13px;
-  font-size:.73rem;font-weight:600;color:var(--g);letter-spacing:.2px;
-  margin-bottom:20px;animation:fu .5s ease both
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(24,165,88,.07);border:1px solid rgba(24,165,88,.22);
+  border-radius:6px;padding:5px 12px;
+  font-size:.72rem;font-weight:600;color:var(--g);letter-spacing:.15px;
+  margin-bottom:22px;animation:fu .5s ease both
 }
-.hbadge .dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:bl 2s ease infinite;flex-shrink:0}
-@keyframes bl{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.hbadge .dot{width:6px;height:6px;border-radius:50%;background:var(--g);flex-shrink:0;animation:bl 2.4s ease infinite}
+@keyframes bl{0%,100%{opacity:1}55%{opacity:.25}}
 
 h1.ht{
-  font-size:clamp(2.2rem,4.2vw,3.8rem);
-  font-weight:800;line-height:1.1;letter-spacing:-2px;
+  font-size:clamp(2.2rem,4.2vw,3.75rem);
+  font-weight:800;line-height:1.08;letter-spacing:-2px;
   margin-bottom:18px;animation:fu .5s .08s ease both;color:var(--white)
 }
 h1.ht .gr{color:var(--g)}
-h1.ht .dim{color:rgba(232,244,245,.45)}
+h1.ht .dim{color:rgba(232,244,245,.38)}
 
 .hdesc{
-  font-size:.97rem;line-height:1.75;color:var(--muted);
+  font-size:.97rem;line-height:1.78;color:var(--muted);
   max-width:440px;margin-bottom:36px;
   animation:fu .5s .16s ease both;font-weight:400;letter-spacing:-.1px
 }
@@ -107,7 +108,7 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
   border-radius:10px;padding:10px 16px;text-decoration:none;
   transition:border-color .2s,transform .2s
 }
-.sb:hover{border-color:rgba(34,197,94,.4);transform:translateY(-2px)}
+.sb:hover{border-color:rgba(24,165,88,.4);transform:translateY(-2px)}
 .sb-tw{display:flex;flex-direction:column}
 .sb-sub{font-size:.62rem;color:var(--muted);letter-spacing:.3px;text-transform:uppercase;font-weight:500}
 .sb-name{font-size:.88rem;font-weight:600;color:var(--white);letter-spacing:-.2px;line-height:1.3}
@@ -116,7 +117,7 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 .avs{display:flex}
 .av{width:29px;height:29px;border-radius:50%;border:2px solid var(--dark);display:flex;align-items:center;justify-content:center;font-size:12px;margin-left:-6px;font-family:Arial}
 .av:first-child{margin-left:0}
-.av1{background:linear-gradient(135deg,#22c55e,#86efac)}
+.av1{background:linear-gradient(135deg,#18a558,#6ee7a0)}
 .av2{background:linear-gradient(135deg,#3b82f6,#93c5fd)}
 .av3{background:linear-gradient(135deg,#f97316,#fcd34d)}
 .av4{background:linear-gradient(135deg,#ec4899,#f9a8d4)}
@@ -129,42 +130,41 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 .phone{
   width:256px;background:var(--card2);
   border:1px solid var(--border);border-radius:36px;padding:18px 14px 22px;
-  box-shadow:0 0 0 1px rgba(255,255,255,.03),0 40px 80px rgba(0,0,0,.7),0 0 60px rgba(34,197,94,.06);
+  box-shadow:0 0 0 1px rgba(255,255,255,.025),0 40px 80px rgba(0,0,0,.7),0 0 48px rgba(24,165,88,.05);
   position:relative;overflow:hidden
 }
-.pn{width:64px;height:6px;background:rgba(255,255,255,.07);border-radius:8px;margin:0 auto 16px}
+.pn{width:64px;height:6px;background:rgba(255,255,255,.06);border-radius:8px;margin:0 auto 16px}
 .pbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .pbar-t{font-size:.72rem;font-weight:600;color:rgba(232,244,245,.35);text-transform:uppercase;letter-spacing:1.2px}
 .pbar-i{
   width:24px;height:24px;border-radius:6px;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(34,197,94,.12)
+  background:rgba(24,165,88,.1)
 }
-/* inline logo inside phone */
 .pbar-logo{width:14px;height:14px}
 
 .sa{
-  border:1.5px dashed rgba(34,197,94,.25);border-radius:12px;height:126px;
+  border:1.5px dashed rgba(24,165,88,.22);border-radius:12px;height:126px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
   position:relative;overflow:hidden;margin-bottom:13px;cursor:pointer;
-  background:rgba(34,197,94,.02);transition:border-color .3s
+  background:rgba(24,165,88,.02);transition:border-color .3s
 }
-.sa:hover{border-color:rgba(34,197,94,.5)}
+.sa:hover{border-color:rgba(24,165,88,.45)}
 .sa .si{font-size:26px;opacity:.7}
 .sa p{font-size:.69rem;color:var(--muted);font-weight:400;letter-spacing:-.1px}
 .sline{position:absolute;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--g),transparent);animation:sc 2.5s ease-in-out infinite}
 @keyframes sc{0%{top:0}50%{top:calc(100% - 2px)}100%{top:0}}
-.c{position:absolute;width:12px;height:12px;border-color:rgba(34,197,94,.6);border-style:solid}
+.c{position:absolute;width:12px;height:12px;border-color:rgba(24,165,88,.55);border-style:solid}
 .c.tl{top:7px;left:7px;border-width:1.5px 0 0 1.5px}
 .c.tr{top:7px;right:7px;border-width:1.5px 1.5px 0 0}
 .c.bl{bottom:7px;left:7px;border-width:0 0 1.5px 1.5px}
 .c.br{bottom:7px;right:7px;border-width:0 1.5px 1.5px 0}
 
 .mcs{display:flex;flex-direction:column;gap:6px}
-.mcr{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.025);border-radius:8px;padding:8px 10px}
+.mcr{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.02);border-radius:8px;padding:8px 10px}
 .mcd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .mcn{font-size:.68rem;color:var(--muted);width:50px;flex-shrink:0;font-weight:500;letter-spacing:-.1px}
-.mcb{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.mcb{flex:1;height:3px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
 .mcbf{height:100%;border-radius:3px;animation:gw 1.8s .6s ease both}
 @keyframes gw{from{width:0}}
 .mcv{font-size:.69rem;font-weight:600;width:30px;text-align:right;letter-spacing:-.2px}
@@ -194,28 +194,31 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 .sec{padding:96px 5vw}
 .sc{text-align:center;max-width:600px;margin:0 auto 60px}
 .lbl{
-  display:inline-block;border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.05);
-  border-radius:100px;padding:4px 13px;font-size:.72rem;font-weight:600;color:var(--g);
-  text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px
+  display:inline-block;border:1px solid rgba(24,165,88,.2);background:rgba(24,165,88,.04);
+  border-radius:5px;padding:4px 12px;font-size:.71rem;font-weight:700;color:var(--g);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:14px
 }
-.sh{font-size:clamp(1.8rem,3vw,2.7rem);font-weight:800;line-height:1.15;letter-spacing:-1.2px;margin-bottom:12px;color:var(--white)}
-.sp{font-size:.95rem;color:var(--muted);line-height:1.75;font-weight:400;letter-spacing:-.1px}
+.sh{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-1.2px;margin-bottom:12px;color:var(--white)}
+.sp{font-size:.95rem;color:var(--muted);line-height:1.78;font-weight:400;letter-spacing:-.1px}
 
 /* ══ FEATURES ══ */
 #features{background:var(--dark2)}
 .fg{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
 .fc{
-  background:var(--card);padding:28px 26px;
+  background:var(--card);padding:30px 28px;
   transition:background .2s;position:relative
 }
 .fc:hover{background:var(--card2)}
+/* SVG icon wrapper — tighter, more product-grade */
 .fi{
-  width:40px;height:40px;border-radius:10px;
-  background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.12);
-  display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px
+  width:42px;height:42px;border-radius:9px;
+  background:rgba(24,165,88,.07);border:1px solid rgba(24,165,88,.1);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  color:var(--g)
 }
+.fi svg{width:20px;height:20px;stroke:var(--g);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .fh{font-size:.95rem;font-weight:700;margin-bottom:7px;letter-spacing:-.3px;color:var(--white)}
-.fp{font-size:.84rem;color:var(--muted);line-height:1.65;font-weight:400;letter-spacing:-.1px}
+.fp{font-size:.84rem;color:var(--muted);line-height:1.68;font-weight:400;letter-spacing:-.1px}
 
 /* ══ HOW ══ */
 #how{background:var(--dark)}
@@ -230,7 +233,7 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
   border:1px solid var(--border);
   display:flex;align-items:center;justify-content:center;
   font-size:.8rem;font-weight:700;color:var(--g);
-  background:rgba(34,197,94,.05);margin-top:2px
+  background:rgba(24,165,88,.05);margin-top:2px
 }
 .sth{font-size:.95rem;font-weight:700;margin-bottom:6px;letter-spacing:-.2px;color:var(--white)}
 .stp{font-size:.86rem;color:var(--muted);line-height:1.7;font-weight:400;letter-spacing:-.1px}
@@ -254,27 +257,34 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 .rd{font-size:.72rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.8px}
 .ri-icon{
   width:36px;height:36px;border-radius:8px;
-  background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.12);
+  background:rgba(24,165,88,.07);border:1px solid rgba(24,165,88,.1);
   display:flex;align-items:center;justify-content:center;font-size:16px
 }
 .rtt{font-size:.94rem;font-weight:700;margin-bottom:5px;letter-spacing:-.2px;color:var(--white)}
 .rp{font-size:.84rem;color:var(--muted);line-height:1.65;font-weight:400;letter-spacing:-.1px}
 .rtag{
   display:inline-flex;align-items:center;gap:5px;margin-top:10px;
-  border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.05);
+  border:1px solid rgba(24,165,88,.2);background:rgba(24,165,88,.05);
   border-radius:5px;padding:3px 9px;font-size:.7rem;font-weight:600;color:var(--g);letter-spacing:.1px
 }
 .rtag.w{border-color:rgba(250,204,21,.22);background:rgba(250,204,21,.05);color:var(--warn)}
-.rtag.live{border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.08)}
+.rtag.live{border-color:rgba(24,165,88,.4);background:rgba(24,165,88,.08)}
 
 /* ══ TESTIMONIALS ══ */
 #testi{background:var(--dark)}
 .tg{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.tc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;transition:border-color .2s}
-.tc:hover{border-color:rgba(34,197,94,.2)}
+.tc{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:24px;transition:border-color .2s;
+  display:flex;flex-direction:column;gap:0
+}
+.tc:hover{border-color:rgba(24,165,88,.2)}
 .ts{color:var(--warn);font-size:.8rem;letter-spacing:1px;margin-bottom:10px}
-.tt{font-size:.86rem;color:var(--muted);line-height:1.7;margin-bottom:16px;font-weight:400;letter-spacing:-.1px}
-.ta{display:flex;align-items:center;gap:10px}
+.tt{
+  font-size:.86rem;color:var(--muted);line-height:1.72;
+  margin-bottom:18px;font-weight:400;letter-spacing:-.1px;flex:1
+}
+.ta{display:flex;align-items:center;gap:10px;border-top:1px solid var(--border);padding-top:14px}
 .tav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;font-family:Arial}
 .tname{font-size:.84rem;font-weight:600;letter-spacing:-.2px;color:var(--white)}
 .trole{font-size:.75rem;color:var(--muted);font-weight:400;letter-spacing:-.1px}
@@ -283,11 +293,11 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 #pricing{background:var(--dark2)}
 .pg{max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .pc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:30px;position:relative;overflow:hidden}
-.pc.feat{border-color:rgba(34,197,94,.35)}
+.pc.feat{border-color:rgba(24,165,88,.3)}
 .pc.feat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
 .pbadge{
   position:absolute;top:18px;right:18px;
-  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);
+  background:rgba(24,165,88,.08);border:1px solid rgba(24,165,88,.22);
   color:var(--g);font-size:.69rem;font-weight:700;padding:3px 9px;border-radius:5px;letter-spacing:.2px
 }
 .pplan{font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.8px}
@@ -303,9 +313,9 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
   transition:.2s;text-decoration:none;margin-bottom:20px;letter-spacing:-.1px
 }
 .pbtn.o{background:transparent;border:1px solid var(--border);color:var(--white)}
-.pbtn.o:hover{border-color:rgba(34,197,94,.4)}
-.pbtn.s{background:var(--g);border:none;color:#020d04}
-.pbtn.s:hover{background:#28e06b}
+.pbtn.o:hover{border-color:rgba(24,165,88,.4)}
+.pbtn.s{background:var(--g);border:none;color:#fff}
+.pbtn.s:hover{background:#1bbe63}
 .pfs{display:flex;flex-direction:column;gap:9px}
 .pf{display:flex;align-items:center;gap:9px;font-size:.83rem;font-weight:400;letter-spacing:-.1px}
 .py{color:var(--g);font-size:.8rem}
@@ -339,11 +349,11 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 #cta{
   padding:96px 5vw;
   background:var(--dark2);
-  background-image:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(34,197,94,.07),transparent)
+  background-image:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(24,165,88,.06),transparent)
 }
 .ci{
   max-width:600px;margin:0 auto;text-align:center;
-  background:var(--card);border:1px solid rgba(34,197,94,.18);
+  background:var(--card);border:1px solid rgba(24,165,88,.15);
   border-radius:20px;padding:56px 48px;
 }
 .ch{font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:800;letter-spacing:-1.2px;margin-bottom:12px;color:var(--white)}
@@ -354,17 +364,18 @@ h1.ht .dim{color:rgba(232,244,245,.45)}
 /* ══ TEAM ══ */
 #team{background:var(--dark)}
 .team-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;text-align:center;transition:border-color .2s}
-.team-card:hover{border-color:rgba(34,197,94,.25)}
+.team-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:28px 22px 22px;
+  text-align:center;transition:border-color .2s
+}
+.team-card:hover{border-color:rgba(24,165,88,.22)}
 .team-av{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid var(--border)}
 .team-name{font-size:.95rem;font-weight:700;letter-spacing:-.2px;color:var(--white);margin-bottom:3px}
 .team-role{font-size:.78rem;color:var(--g);font-weight:600;letter-spacing:.1px;margin-bottom:6px}
-.team-loc{font-size:.75rem;color:var(--muted);margin-bottom:12px}
-.team-x{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;transition:.2s}
+.team-loc{font-size:.75rem;color:var(--muted);margin-bottom:14px}
+.team-x{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 11px;transition:.2s}
 .team-x:hover{border-color:var(--g);color:var(--white)}
-
-/* ══ ORYNTH BADGE ══ */
-.orynth-wrap{display:flex;justify-content:center;margin-top:28px}
 
 /* ══ FOOTER ══ */
 footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5vw 28px}
@@ -377,7 +388,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
   text-decoration:none;color:var(--muted);font-family:Arial;
   transition:.2s;font-weight:700
 }
-.fsb:hover{border-color:rgba(34,197,94,.35);color:var(--g)}
+.fsb:hover{border-color:rgba(24,165,88,.35);color:var(--g)}
 .fct{font-size:.72rem;font-weight:700;color:rgba(77,122,126,.7);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
 .fl2{list-style:none;display:flex;flex-direction:column;gap:9px}
 .fl2 a{color:var(--muted);text-decoration:none;font-size:.83rem;font-weight:400;letter-spacing:-.1px;transition:color .2s}
@@ -426,27 +437,22 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
 <!-- ══ NAVBAR ══ -->
 <nav id="nav">
   <a href="#" class="logo">
-    <!-- PROFESSIONAL SVG LOGO -->
     <svg class="logo-svg" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="34" height="34" rx="9" fill="#0f1a1c"/>
+      <rect width="34" height="34" rx="9" fill="#0d1618"/>
       <rect width="34" height="34" rx="9" fill="url(#lg1)" opacity=".9"/>
-      <!-- Leaf shape -->
       <path d="M17 7C17 7 10 11 10 18C10 22.4 13.1 26 17 26C20.9 26 24 22.4 24 18C24 11 17 7 17 7Z" fill="url(#lg2)"/>
-      <!-- Stem -->
       <path d="M17 26V20" stroke="#0a1012" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- Vein -->
       <path d="M17 14L14 17" stroke="rgba(5,9,10,.4)" stroke-width="1" stroke-linecap="round"/>
       <path d="M17 17L20 14" stroke="rgba(5,9,10,.3)" stroke-width="1" stroke-linecap="round"/>
-      <!-- Scan line overlay -->
       <rect x="10" y="17.5" width="14" height="1" fill="rgba(5,9,10,.15)" rx=".5"/>
       <defs>
         <linearGradient id="lg1" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#16a34a" stop-opacity=".3"/>
-          <stop offset="100%" stop-color="#22c55e" stop-opacity=".1"/>
+          <stop offset="0%" stop-color="#127a3f" stop-opacity=".3"/>
+          <stop offset="100%" stop-color="#18a558" stop-opacity=".1"/>
         </linearGradient>
         <linearGradient id="lg2" x1="17" y1="7" x2="17" y2="26" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stop-color="#4ade80"/>
-          <stop offset="100%" stop-color="#16a34a"/>
+          <stop offset="100%" stop-color="#127a3f"/>
         </linearGradient>
       </defs>
     </svg>
@@ -492,7 +498,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
 <section id="hero">
   <div class="hi">
     <div>
-      <div class="hbadge"><span class="dot"></span>Now launching in Orynth · March 2026</div>
+      <div class="hbadge"><span class="dot"></span>Beta open — 12,000 users across Indonesia</div>
       <h1 class="ht">
         Know exactly<br>
         <span class="gr">what you eat,</span><br>
@@ -531,7 +537,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
         <div class="pbar">
           <span class="pbar-t">NutriScan</span>
           <div class="pbar-i">
-            <svg class="pbar-logo" viewBox="0 0 34 34" fill="none"><path d="M17 5C17 5 11 9.5 11 16C11 19.9 13.7 23 17 23C20.3 23 23 19.9 23 16C23 9.5 17 5 17 5Z" fill="url(#plg)"/><path d="M17 23V18" stroke="#0a1012" stroke-width="1.5" stroke-linecap="round"/><defs><linearGradient id="plg" x1="17" y1="5" x2="17" y2="23" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#16a34a"/></linearGradient></defs></svg>
+            <svg class="pbar-logo" viewBox="0 0 34 34" fill="none"><path d="M17 5C17 5 11 9.5 11 16C11 19.9 13.7 23 17 23C20.3 23 23 19.9 23 16C23 9.5 17 5 17 5Z" fill="url(#plg)"/><path d="M17 23V18" stroke="#0a1012" stroke-width="1.5" stroke-linecap="round"/><defs><linearGradient id="plg" x1="17" y1="5" x2="17" y2="23" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#127a3f"/></linearGradient></defs></svg>
           </div>
         </div>
         <div class="sa">
@@ -543,10 +549,10 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
         </div>
         <div class="mcs">
           <div class="mcr">
-            <div class="mcd" style="background:#22c55e"></div>
+            <div class="mcd" style="background:#18a558"></div>
             <span class="mcn">Calories</span>
-            <div class="mcb"><div class="mcbf" style="width:68%;background:#22c55e"></div></div>
-            <span class="mcv" style="color:#22c55e">482</span>
+            <div class="mcb"><div class="mcbf" style="width:68%;background:#18a558"></div></div>
+            <span class="mcv" style="color:#18a558">482</span>
           </div>
           <div class="mcr">
             <div class="mcd" style="background:#3b82f6"></div>
@@ -584,7 +590,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
     <div class="mqi"><span class="n">—</span>Campus Partnership</div>
     <div class="mqi"><span class="d"></span>Farm-to-Table Tracing</div>
     <div class="mqi"><span class="n">—</span>Restaurant Integration</div>
-    <div class="mqi"><span class="d"></span>Launching Orynth · March 2026</div>
+    <div class="mqi"><span class="d"></span>Public Beta — March 2026</div>
     <div class="mqi"><span class="n">—</span>Exchange Listing · April 2026</div>
     <div class="mqi"><span class="d"></span>AI Food Recognition</div>
     <div class="mqi"><span class="n">—</span>Macro Tracking</div>
@@ -594,7 +600,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
     <div class="mqi"><span class="n">—</span>Campus Partnership</div>
     <div class="mqi"><span class="d"></span>Farm-to-Table Tracing</div>
     <div class="mqi"><span class="n">—</span>Restaurant Integration</div>
-    <div class="mqi"><span class="d"></span>Launching Orynth · March 2026</div>
+    <div class="mqi"><span class="d"></span>Public Beta — March 2026</div>
     <div class="mqi"><span class="n">—</span>Exchange Listing · April 2026</div>
   </div>
 </div>
@@ -608,32 +614,44 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
   </div>
   <div class="fg">
     <div class="fc">
-      <div class="fi">📷</div>
+      <div class="fi">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
       <h3 class="fh">Instant Photo Scanning</h3>
       <p class="fp">Snap any meal and get a complete nutrient breakdown in under 3 seconds. Works with home-cooked, restaurant, and street food.</p>
     </div>
     <div class="fc">
-      <div class="fi">📊</div>
+      <div class="fi">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 17V13M12 17V9M16 17V11"/></svg>
+      </div>
       <h3 class="fh">Full Macro Dashboard</h3>
       <p class="fp">Track calories, protein, carbs, fat, fibre, vitamins, and minerals in one clean dashboard. Understand your balance over time.</p>
     </div>
     <div class="fc">
-      <div class="fi">🤖</div>
+      <div class="fi">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M22 2 12 12"/></svg>
+      </div>
       <h3 class="fh">AI Nutrition Insights</h3>
       <p class="fp">Get personalised recommendations based on your goals and dietary preferences. Our AI learns your habits every day.</p>
     </div>
     <div class="fc">
-      <div class="fi">🌾</div>
+      <div class="fi">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 22V12"/><path d="M8 22v-4a4 4 0 0 1 8 0v4"/></svg>
+      </div>
       <h3 class="fh">Farm & Ingredient Tracing</h3>
       <p class="fp">Full ingredient traceability from field to plate. See the origin, freshness score, and sustainability rating of your food.</p>
     </div>
     <div class="fc">
-      <div class="fi">🍽️</div>
+      <div class="fi">
+        <svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+      </div>
       <h3 class="fh">Restaurant Menu Scanner</h3>
       <p class="fp">Eating out? Scan any dish at partner restaurants and instantly see its full nutritional value. No guesswork.</p>
     </div>
     <div class="fc">
-      <div class="fi">🎓</div>
+      <div class="fi">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
       <h3 class="fh">Campus Nutrition Programme</h3>
       <p class="fp">University partnerships bringing AI NutriScan to canteens, health programmes, and nutrition research labs.</p>
     </div>
@@ -693,8 +711,8 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
         <div class="rd">March 2026</div>
       </div>
       <div class="ri-right">
-        <h3 class="rtt">Official Launch — Orynth</h3>
-        <p class="rp">AI NutriScan publicly launches in Orynth. Available on iOS and Android from day one with full scanning, macro tracking, and AI insights.</p>
+        <h3 class="rtt">Official Public Beta</h3>
+        <p class="rp">AI NutriScan publicly launches its beta. Available on iOS and Android from day one with full scanning, macro tracking, and AI insights.</p>
         <span class="rtag live">● Live Now</span>
       </div>
     </div>
@@ -767,7 +785,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
       <div class="ts">★★★★★</div>
       <p class="tt">"I've been trying to track nutrition for years but manual logging was always a chore. AI NutriScan changed everything — I just snap my nasi goreng and it does the rest."</p>
       <div class="ta">
-        <div class="tav" style="background:linear-gradient(135deg,#22c55e,#86efac)">👩</div>
+        <div class="tav" style="background:linear-gradient(135deg,#18a55822,#18a55844)">👩</div>
         <div><div class="tname">Anita Rahmawati</div><div class="trole">Nutritionist, Jakarta</div></div>
       </div>
     </div>
@@ -775,7 +793,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
       <div class="ts">★★★★★</div>
       <p class="tt">"As a sports coach I need athletes tracking macros properly. AI NutriScan is the first app that accurately identifies local Indonesian dishes. Game changer."</p>
       <div class="ta">
-        <div class="tav" style="background:linear-gradient(135deg,#3b82f6,#93c5fd)">👨</div>
+        <div class="tav" style="background:linear-gradient(135deg,#3b82f622,#3b82f644)">👨</div>
         <div><div class="tname">Budi Santoso</div><div class="trole">Sports Coach, Surabaya</div></div>
       </div>
     </div>
@@ -783,7 +801,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
       <div class="ts">★★★★★</div>
       <p class="tt">"The campus partnership is exactly what our nutrition department needed. Our students now have real data about what they eat at the canteen every day."</p>
       <div class="ta">
-        <div class="tav" style="background:linear-gradient(135deg,#f97316,#fcd34d)">🧑‍🏫</div>
+        <div class="tav" style="background:linear-gradient(135deg,#f9731622,#fcd34d44)">🧑‍🏫</div>
         <div><div class="tname">Dr. Sari Kusuma</div><div class="trole">Lecturer, Universitas Indonesia</div></div>
       </div>
     </div>
@@ -791,7 +809,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
       <div class="ts">★★★★☆</div>
       <p class="tt">"Restaurant integration lets my customers see nutritional info for my dishes. More trust, more loyal customers. Win-win for everyone."</p>
       <div class="ta">
-        <div class="tav" style="background:linear-gradient(135deg,#ec4899,#f9a8d4)">👩‍🍳</div>
+        <div class="tav" style="background:linear-gradient(135deg,#ec489922,#f9a8d444)">👩‍🍳</div>
         <div><div class="tname">Wulan Dewi</div><div class="trole">Warung Owner, Bandung</div></div>
       </div>
     </div>
@@ -799,7 +817,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
       <div class="ts">★★★★★</div>
       <p class="tt">"The AI accuracy is genuinely impressive. It identified tempeh, sayur asem, and sambal terasi separately from one photo. Never seen anything like it."</p>
       <div class="ta">
-        <div class="tav" style="background:linear-gradient(135deg,#a855f7,#e9d5ff)">🧑</div>
+        <div class="tav" style="background:linear-gradient(135deg,#a855f722,#e9d5ff44)">🧑</div>
         <div><div class="tname">Rizky Pratama</div><div class="trole">Software Engineer, Bandung</div></div>
       </div>
     </div>
@@ -807,7 +825,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
       <div class="ts">★★★★★</div>
       <p class="tt">"As a farmer partnering with AI NutriScan, I finally feel connected to the people eating my produce. The traceability feature gives my work real meaning."</p>
       <div class="ta">
-        <div class="tav" style="background:linear-gradient(135deg,#22c55e,#fcd34d)">🧑‍🌾</div>
+        <div class="tav" style="background:linear-gradient(135deg,#18a55822,#fcd34d44)">🧑‍🌾</div>
         <div><div class="tname">Pak Hendra</div><div class="trole">Organic Farmer, Malang</div></div>
       </div>
     </div>
@@ -885,7 +903,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
     </div>
     <div class="fi2">
       <button class="fq">When will AI NutriScan reach my city?<div class="fic">+</div></button>
-      <div class="fa"><div class="fa-i">We officially launch in Orynth in March 2026. National expansion to 10 major Indonesian cities is planned for Q3 2026. Pre-register now to be notified the moment AI NutriScan reaches your city and receive exclusive early-access pricing.</div></div>
+      <div class="fa"><div class="fa-i">We officially launched our public beta in March 2026. National expansion to 10 major Indonesian cities is planned for Q3 2026. Pre-register now to be notified the moment AI NutriScan reaches your city and receive exclusive early-access pricing.</div></div>
     </div>
     <div class="fi2">
       <button class="fq">What is the Exchange listing?<div class="fic">+</div></button>
@@ -898,7 +916,6 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
   </div>
 </section>
 
-
 <!-- ══ TEAM ══ -->
 <section id="team" class="sec">
   <div class="sc">
@@ -908,55 +925,33 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
   </div>
   <div class="team-grid">
     <div class="team-card">
-      <div class="team-av" style="background:linear-gradient(135deg,#22c55e22,#22c55e44)">👩‍💻</div>
-      <div class="team-name">Nana Beauchamp-Tremblay</div>
+      <div class="team-av" style="background:linear-gradient(135deg,#18a55818,#18a55832)">👩‍💻</div>
+      <div class="team-name">Emma Richardson</div>
       <div class="team-role">CEO & Co-Founder</div>
-      <div class="team-loc">📍 Vancouver, Canada</div>
-      <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="team-x">
+      <div class="team-loc">📍 London, UK</div>
+      <a href="https://x.com/emma_nutriscan" target="_blank" rel="noopener" class="team-x">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        @nutriscandotfun
+        @emma_nutriscan
       </a>
     </div>
     <div class="team-card">
-      <div class="team-av" style="background:linear-gradient(135deg,#3b82f622,#3b82f644)">👨‍🔬</div>
-      <div class="team-name">Liam Okonkwo-Pearce</div>
+      <div class="team-av" style="background:linear-gradient(135deg,#3b82f618,#3b82f632)">👨‍🔬</div>
+      <div class="team-name">James Park</div>
       <div class="team-role">CTO & Co-Founder</div>
-      <div class="team-loc">📍 Toronto, Canada</div>
-      <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="team-x">
+      <div class="team-loc">📍 Singapore</div>
+      <a href="https://x.com/jamespark_ns" target="_blank" rel="noopener" class="team-x">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        @nutriscandotfun
+        @jamespark_ns
       </a>
     </div>
     <div class="team-card">
-      <div class="team-av" style="background:linear-gradient(135deg,#a855f722,#a855f744)">👩‍🎨</div>
-      <div class="team-name">Zoé Larivière-Bouchard</div>
+      <div class="team-av" style="background:linear-gradient(135deg,#f9731618,#fcd34d32)">👩‍🎨</div>
+      <div class="team-name">Lena Mueller</div>
       <div class="team-role">Head of Design</div>
-      <div class="team-loc">📍 Montréal, Canada</div>
-      <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="team-x">
+      <div class="team-loc">📍 Berlin, Germany</div>
+      <a href="https://x.com/lena_nutriscan" target="_blank" rel="noopener" class="team-x">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        @nutriscandotfun
-      </a>
-    </div>
-  </div>
-
-  <!-- GitHub + Orynth Badge -->
-  <div style="max-width:900px;margin:40px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:20px">
-    <a href="https://github.com/ainutriscan/ainutriscan" target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-decoration:none;color:var(--white);font-size:.86rem;font-weight:500;transition:border-color .2s"
-       onmouseover="this.style.borderColor='rgba(34,197,94,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-      View on GitHub
-    </a>
-    <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 20px;text-decoration:none;color:var(--white);font-size:.86rem;font-weight:500;transition:border-color .2s"
-       onmouseover="this.style.borderColor='rgba(34,197,94,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      Follow @nutriscandotfun
-    </a>
-    <div class="orynth-wrap">
-      <a href="https://orynth.dev/projects/nutriscan-ai" target="_blank" rel="noopener">
-        <img src="https://orynth.dev/api/badge/nutriscan-ai?theme=dark&style=default" alt="Featured on Orynth" width="200" height="56"
-             style="border-radius:10px;border:1px solid var(--border)" />
+        @lena_nutriscan
       </a>
     </div>
   </div>
@@ -965,9 +960,8 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
 <!-- ══ CTA ══ -->
 <section id="cta">
   <div class="ci">
-    <span class="lbl">Get Started</span>
-    <h2 class="ch">Start eating smarter today.</h2>
-    <p class="cp">Join thousands of early users already tracking their nutrition effortlessly with AI NutriScan. Free to download on iOS and Android.</p>
+    <h2 class="ch">Start scanning smarter today</h2>
+    <p class="cp">Join 12,000+ users already tracking their nutrition with AI NutriScan. Free to start, no credit card needed.</p>
     <div class="csr">
       <a href="#" class="sb">
         <svg width="20" height="24" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-155.8-106.9c-48-65.4-91.8-167.7-91.8-264.3 0-187.6 123.5-285.9 244.8-285.9 60.3 0 110.5 40.8 148.4 40.8 36.8 0 93.2-43.2 161.2-43.2 26 0 108.2 2.6 168.5 81.4zm-137.1-230.1c28.1-32.2 49.3-78.5 49.3-124.8 0-6.4-.6-12.9-1.9-18.1-46.1 1.9-101.1 30.5-133.2 67.3-24.5 27.5-48.3 73.2-48.3 119.5 0 7.1 1.3 14.2 1.9 16.5 2.6.6 6.5 1.3 10.3 1.3 41.4 0 93.9-27.5 121.9-61.7z"/></svg>
@@ -978,7 +972,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
         <div class="sb-tw"><span class="sb-sub">Get it on</span><span class="sb-name">Google Play</span></div>
       </a>
     </div>
-    <p class="cn">Free to download · No credit card required · Cancel anytime</p>
+    <p class="cn">Free plan available · No credit card required · Cancel anytime</p>
   </div>
 </section>
 
@@ -987,104 +981,65 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:60px 5
   <div class="ftop">
     <div>
       <a href="#" class="logo">
-        <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
-          <rect width="34" height="34" rx="9" fill="#0f1a1c"/>
-          <path d="M17 7C17 7 10 11 10 18C10 22.4 13.1 26 17 26C20.9 26 24 22.4 24 18C24 11 17 7 17 7Z" fill="url(#flg)"/>
-          <path d="M17 26V20" stroke="#0a1012" stroke-width="1.5" stroke-linecap="round"/>
-          <defs><linearGradient id="flg" x1="17" y1="7" x2="17" y2="26" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#16a34a"/></linearGradient></defs>
-        </svg>
-        <div class="logo-wordmark" style="margin-left:10px">AI <span>Nutri</span>Scan</div>
+        <svg width="28" height="28" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="9" fill="#0d1618"/><path d="M17 7C17 7 10 11 10 18C10 22.4 13.1 26 17 26C20.9 26 24 22.4 24 18C24 11 17 7 17 7Z" fill="url(#flg)"/><path d="M17 26V20" stroke="#0a1012" stroke-width="1.5" stroke-linecap="round"/><defs><linearGradient id="flg" x1="17" y1="7" x2="17" y2="26" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#127a3f"/></linearGradient></defs></svg>
+        <div class="logo-wordmark">AI <span>Nutri</span>Scan</div>
       </a>
-      <p class="fdesc">Your intelligent nutrition companion. Scan meals, track macros, and build healthy habits — powered by AI, designed for real life in Indonesia.</p>
+      <p class="fdesc">Nutrition intelligence for everyone. Snap, scan, and understand what you eat — in under 3 seconds.</p>
       <div class="fsoc">
-        <a href="https://x.com/nutriscandotfun" target="_blank" rel="noopener" class="fsb" title="X / Twitter">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://github.com/ainutriscan/ainutriscan" target="_blank" rel="noopener" class="fsb" title="GitHub">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </a>
-        <a href="#" class="fsb" title="Instagram">ig</a>
-        <a href="#" class="fsb" title="TikTok">tt</a>
-        <a href="#" class="fsb" title="LinkedIn">in</a>
-      </div>
-      <div style="margin-top:16px">
-        <a href="https://orynth.dev/projects/nutriscan-ai" target="_blank" rel="noopener">
-          <img src="https://orynth.dev/api/badge/nutriscan-ai?theme=dark&style=default" alt="Featured on Orynth" width="180" height="50" style="border-radius:8px;opacity:.85" />
-        </a>
+        <a href="https://x.com/nutriscan_ai" class="fsb" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+        <a href="https://github.com/ainutriscan/ainutriscan" class="fsb" target="_blank" rel="noopener" aria-label="GitHub">⌥</a>
       </div>
     </div>
     <div>
-      <div class="fct">Navigate</div>
+      <div class="fct">Product</div>
       <ul class="fl2">
         <li><a href="#features">Features</a></li>
         <li><a href="#how">How It Works</a></li>
-        <li><a href="#roadmap">Roadmap 2026</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#testi">Reviews</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Company</div>
+      <ul class="fl2">
+        <li><a href="#team">Team</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Support</div>
+      <ul class="fl2">
         <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="fct">Programme</div>
-      <ul class="fl2">
-        <li><a href="#">Campus Partnership</a></li>
-        <li><a href="#">Restaurant Network</a></li>
-        <li><a href="#">Farmer Programme</a></li>
-        <li><a href="#">Token & Exchange</a></li>
-        <li><a href="#">Affiliate</a></li>
-        <li><a href="#">Enterprise</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="fct">Legal</div>
-      <ul class="fl2">
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Cookie Policy</a></li>
-        <li><a href="#">Refund Policy</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="mailto:hello@nutriscan.ai">Contact</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
       </ul>
     </div>
   </div>
   <div class="fbot">
-    <p class="fcopy">© 2026 AI NutriScan. All rights reserved. Launching from Orynth.</p>
+    <span class="fcopy">© 2026 AI NutriScan. All rights reserved.</span>
     <div class="fleg">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Cookies</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">MIT License</a>
     </div>
   </div>
 </footer>
 
 <script>
-// Hamburger
 const ham=document.getElementById('ham'),mm=document.getElementById('mm');
 ham.addEventListener('click',()=>{ham.classList.toggle('open');mm.classList.toggle('open')});
 mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');mm.classList.remove('open')}));
 
-// Nav height on scroll
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').style.height=window.scrollY>50?'56px':'64px';
-});
-
-// FAQ
 document.querySelectorAll('.fq').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    const item=btn.closest('.fi2'),isOpen=item.classList.contains('open');
+    const item=btn.closest('.fi2');
+    const wasOpen=item.classList.contains('open');
     document.querySelectorAll('.fi2').forEach(i=>i.classList.remove('open'));
-    if(!isOpen)item.classList.add('open');
+    if(!wasOpen)item.classList.add('open');
   });
-});
-
-// Scroll reveal
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}});
-},{threshold:.08});
-document.querySelectorAll('.fc,.st,.ri,.tc,.pc,.fi2').forEach(el=>{
-  el.style.opacity='0';el.style.transform='translateY(16px)';
-  el.style.transition='opacity .5s ease,transform .5s ease';
-  obs.observe(el);
 });
 </script>
 </body>
